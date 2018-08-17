@@ -11,6 +11,42 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+/**
+ * @SWG\Swagger(
+ *     schemes={"http"},
+ *     @SWG\Info(title="TODO LIST API", version="0.1",
+ *      @SWG\Contact(name="Rafael Pedrosa", url="https://www.rafadpedrosa.com.br"),
+ *     )
+ * )
+ *
+ * @SWG\Get(
+ *     path="/api",
+ *     summary="Verificar se a aplicação está funcionando", produces={"application/json"},
+ *     @SWG\Response(response="200", description="An print showing laravel lumen message")
+ * )
+ */
+$router->group(['middleware' => [
+    //    'cors',
+    'JsonApiMiddleware'
+], 'prefix' => '/api'], function () use ($router) {
+    $router->get('/', function () use ($router) {
+        return $router->app->version() . " - Todo API Working";
+    });
+
+    $router->resource('car', 'CarController');
+    $router->get('/swagger', function () {
+        return $content = file_get_contents('../public/swagger.json');
+    });
+
 });
+
+// cors problem....
+//Route::options(
+//    '/{any:.*}',
+//    [
+//        'middleware' => ['cors'],
+//        function () {
+//            return response(['status' => 'success']);
+//        }
+//    ]
+//);
