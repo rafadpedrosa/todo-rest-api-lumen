@@ -72,7 +72,7 @@ class UserController extends Controller
      *     path="/api/user",
      *     summary="Salva user",
      *     produces={"application/json"},
-     *     @SWG\parameter(ref="#/parameters/pAuthorization"),
+     *     security={{"api_key": {"scope"}}},
      *     @SWG\parameter(
      *      name="body",
      *      in="body",
@@ -111,7 +111,7 @@ class UserController extends Controller
      *     path="/api/user/{id}",
      *     summary="Busca user",
      *     produces={"application/json"},
-     *     @SWG\parameter(ref="#/parameters/pAuthorization"),
+     *     security={{"api_key": {"scope"}}},
      *     @SWG\Parameter(ref="#/parameters/pId"),
      *     @SWG\Response(response="200", description="user encontrado"),
      *     @SWG\Response(response="500", description="Internal server Error")
@@ -131,7 +131,7 @@ class UserController extends Controller
      *     path="/api/user/{id}",
      *     summary="Altera user",
      *     produces={"application/json"},
-     *     @SWG\parameter(ref="#/parameters/pAuthorization"),
+     *     security={{"api_key": {"scope"}}},
      *     @SWG\Parameter(ref="#/parameters/pId"),
      *     @SWG\parameter(
      *      name="body",
@@ -176,7 +176,7 @@ class UserController extends Controller
      *     path="/api/user/{id}/edit",
      *     summary="Busca user para ser editado",
      *     produces={"application/json"},
-     *     @SWG\parameter(ref="#/parameters/pAuthorization"),
+     *     security={{"api_key": {"scope"}}},
      *     @SWG\Parameter(ref="#/parameters/pId"),
      *     @SWG\Response(response="200", description="user encontrado para ser editado"),
      *     @SWG\Response(response="500", description="Internal server Error")
@@ -196,7 +196,7 @@ class UserController extends Controller
      *     path="/api/user/{id}",
      *     summary="Deleta user",
      *     produces={"application/json"},
-     *     @SWG\parameter(ref="#/parameters/pAuthorization"),
+     *     security={{"api_key": {"scope"}}},
      *     @SWG\Parameter(ref="#/parameters/pId"),
      *     @SWG\Response(response="200", description="user alterado com sucesso"),
      *     @SWG\Response(response="500", description="Internal server Error")

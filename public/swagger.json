@@ -104,9 +104,6 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/pAuthorization"
-                    },
-                    {
                         "name": "body",
                         "in": "body",
                         "required": true,
@@ -122,7 +119,14 @@
                     "500": {
                         "description": "Internal server Error"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "scope"
+                        ]
+                    }
+                ]
             }
         },
         "/api/user/{id}": {
@@ -136,9 +140,6 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/pAuthorization"
-                    },
-                    {
                         "$ref": "#/parameters/pId"
                     }
                 ],
@@ -149,7 +150,14 @@
                     "500": {
                         "description": "Internal server Error"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "scope"
+                        ]
+                    }
+                ]
             },
             "put": {
                 "tags": [
@@ -160,9 +168,6 @@
                     "application/json"
                 ],
                 "parameters": [
-                    {
-                        "$ref": "#/parameters/pAuthorization"
-                    },
                     {
                         "$ref": "#/parameters/pId"
                     },
@@ -182,7 +187,14 @@
                     "500": {
                         "description": "Internal server Error"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "scope"
+                        ]
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -194,9 +206,6 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/pAuthorization"
-                    },
-                    {
                         "$ref": "#/parameters/pId"
                     }
                 ],
@@ -207,7 +216,14 @@
                     "500": {
                         "description": "Internal server Error"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "scope"
+                        ]
+                    }
+                ]
             }
         },
         "/api/user/{id}/edit": {
@@ -221,9 +237,6 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/pAuthorization"
-                    },
-                    {
                         "$ref": "#/parameters/pId"
                     }
                 ],
@@ -234,7 +247,14 @@
                     "500": {
                         "description": "Internal server Error"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "scope"
+                        ]
+                    }
+                ]
             }
         },
         "/api": {
@@ -434,6 +454,14 @@
         {
             "name": "generic",
             "description": "AJUSTE AQUI",
+            "externalDocs": {
+                "description": "",
+                "url": ""
+            }
+        },
+        {
+            "name": "users",
+            "description": "users  API description",
             "externalDocs": {
                 "description": "",
                 "url": ""
