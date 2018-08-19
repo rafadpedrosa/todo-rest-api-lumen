@@ -25,4 +25,13 @@
  *   )
  * )
  *
- */
+ *
+ * @SWG\Tag(
+ *   name="users",
+ *   description="users  API description",
+ *   @SWG\ExternalDocumentation(
+ *     description="",
+ *     url=""
+ *   )
+ * )
+ **/ 

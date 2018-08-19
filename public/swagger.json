@@ -12,6 +12,231 @@
         "http"
     ],
     "paths": {
+        "/api/authenticate": {
+            "post": {
+                "tags": [
+                    "generic"
+                ],
+                "summary": "Authentica usu\u00e1rios do sistema",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "usu\u00e1rio authenticado"
+                    },
+                    "304": {
+                        "description": "Usu\u00e1rio e ou senha errads"
+                    },
+                    "401": {
+                        "description": "N\u00e3o autorizado"
+                    },
+                    "500": {
+                        "description": "Erro inesperado"
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Busca todos os users paginados",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pFilter"
+                    },
+                    {
+                        "$ref": "#/parameters/pPage"
+                    },
+                    {
+                        "$ref": "#/parameters/pPer_page"
+                    },
+                    {
+                        "$ref": "#/parameters/pSort"
+                    },
+                    {
+                        "$ref": "#/parameters/pColumns"
+                    },
+                    {
+                        "$ref": "#/parameters/pPageName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna users paginados"
+                    },
+                    "500": {
+                        "description": "Erro inesperado"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "scope"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/user": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Salva user",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pAuthorization"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user salvo com sucesso"
+                    },
+                    "500": {
+                        "description": "Internal server Error"
+                    }
+                }
+            }
+        },
+        "/api/user/{id}": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Busca user",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pAuthorization"
+                    },
+                    {
+                        "$ref": "#/parameters/pId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user encontrado"
+                    },
+                    "500": {
+                        "description": "Internal server Error"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Altera user",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pAuthorization"
+                    },
+                    {
+                        "$ref": "#/parameters/pId"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user alterado com sucesso"
+                    },
+                    "500": {
+                        "description": "Internal server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Deleta user",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pAuthorization"
+                    },
+                    {
+                        "$ref": "#/parameters/pId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user alterado com sucesso"
+                    },
+                    "500": {
+                        "description": "Internal server Error"
+                    }
+                }
+            }
+        },
+        "/api/user/{id}/edit": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Busca user para ser editado",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pAuthorization"
+                    },
+                    {
+                        "$ref": "#/parameters/pId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user encontrado para ser editado"
+                    },
+                    "500": {
+                        "description": "Internal server Error"
+                    }
+                }
+            }
+        },
         "/api": {
             "get": {
                 "summary": "Verificar se a aplica\u00e7\u00e3o est\u00e1 funcionando",
@@ -27,6 +252,27 @@
         }
     },
     "definitions": {
+        "User": {
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "example": {
+                "name": "User name",
+                "description": "User 1"
+            }
+        },
         "SWGGeneric": {
             "properties": {
                 "email": {
@@ -54,6 +300,21 @@
             "example": {
                 "email": "1@1.com",
                 "password": "1"
+            }
+        },
+        "auth": {
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "example": {
+                "email": "User email",
+                "password": "Senha do usu\u00e1rio"
             }
         }
     },
@@ -141,6 +402,16 @@
             "in": "query",
             "description": "query string page name",
             "type": "string"
+        }
+    },
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "scopes": {
+                "scope": "Description of scope."
+            }
         }
     },
     "tags": [
