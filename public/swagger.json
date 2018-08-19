@@ -1,0 +1,172 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "TODO LIST API",
+        "contact": {
+            "name": "Rafael Pedrosa",
+            "url": "https://www.rafadpedrosa.com.br"
+        },
+        "version": "0.1"
+    },
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/api": {
+            "get": {
+                "summary": "Verificar se a aplica\u00e7\u00e3o est\u00e1 funcionando",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An print showing laravel lumen message"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "SWGGeneric": {
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "example": {
+                "name": "test"
+            }
+        },
+        "SWGUserLogin": {
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "example": {
+                "email": "1@1.com",
+                "password": "1"
+            }
+        }
+    },
+    "parameters": {
+        "generic_def": {
+            "name": "generic",
+            "in": "body",
+            "description": "JSON obj",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/SWGGeneric"
+            }
+        },
+        "user_login": {
+            "name": "user",
+            "in": "body",
+            "description": "JSON obj",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/SWGUserLogin"
+            }
+        },
+        "pAuthorization": {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string"
+        },
+        "pEmail": {
+            "name": "email",
+            "in": "body",
+            "required": true,
+            "schema": {
+                "title": "json",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "example": {
+                    "email": "1@1.com"
+                }
+            },
+            "type": "string"
+        },
+        "pFilter": {
+            "name": "filter",
+            "in": "query",
+            "description": "query string filter",
+            "type": "string"
+        },
+        "pId": {
+            "name": "id",
+            "in": "path",
+            "description": "path - id",
+            "type": "string"
+        },
+        "pPage": {
+            "name": "page",
+            "in": "query",
+            "description": "query string page",
+            "type": "string"
+        },
+        "pPer_page": {
+            "name": "per_page",
+            "in": "query",
+            "description": "query string per_page",
+            "type": "string"
+        },
+        "pSort": {
+            "name": "sort",
+            "in": "query",
+            "description": "query string sort",
+            "type": "string"
+        },
+        "pColumns": {
+            "name": "columns",
+            "in": "query",
+            "description": "query string columns",
+            "type": "string"
+        },
+        "pPageName": {
+            "name": "pageName",
+            "in": "query",
+            "description": "query string page name",
+            "type": "string"
+        }
+    },
+    "tags": [
+        {
+            "name": "diversos",
+            "description": "Opera\u00e7\u00f5es diversas do sistema",
+            "externalDocs": {
+                "description": "",
+                "url": ""
+            }
+        },
+        {
+            "name": "config",
+            "description": "Toda a api de config",
+            "externalDocs": {
+                "description": "",
+                "url": ""
+            }
+        },
+        {
+            "name": "generic",
+            "description": "AJUSTE AQUI",
+            "externalDocs": {
+                "description": "",
+                "url": ""
+            }
+        }
+    ]
+}

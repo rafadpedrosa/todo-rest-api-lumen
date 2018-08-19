@@ -33,7 +33,6 @@ $router->group(['middleware' => [
         return $router->app->version() . " - Todo API Working";
     });
 
-    $router->resource('car', 'CarController');
     $router->get('/swagger', function () {
         return $content = file_get_contents('../public/swagger.json');
     });
