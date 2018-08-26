@@ -59,7 +59,8 @@ class UserController extends Controller
 
         $query = User::query();
 
-        $query = mountOrWhereRecursive($query, 'name', $filter);
+        $query = mountOrWhereRecursive($query, 'username', $filter);
+        $query = mountOrWhereRecursive($query, 'email', $filter);
 
         return response()
             ->json($query->orderBy($sort[0], $sort[1])

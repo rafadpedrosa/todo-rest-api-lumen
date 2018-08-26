@@ -57,6 +57,8 @@ $router->group(['middleware' => [
     });
 
     $router->post('/authenticate', 'AuthController@authenticate');
+    $router->post('/authenticateByToken', 'AuthController@authenticateByToken');
+    $router->post('/logout', 'AuthController@logout');
 });
 
 

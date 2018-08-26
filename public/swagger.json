@@ -47,6 +47,73 @@
                 }
             }
         },
+        "/api/authenticateByToken": {
+            "post": {
+                "tags": [
+                    "generic"
+                ],
+                "summary": "Authentica usu\u00e1rios do sistema pelo token",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth_api"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "usu\u00e1rio authenticado"
+                    },
+                    "304": {
+                        "description": "Usu\u00e1rio e ou senha errads"
+                    },
+                    "401": {
+                        "description": "N\u00e3o autorizado"
+                    },
+                    "500": {
+                        "description": "Erro inesperado"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "generic"
+                ],
+                "summary": "Desloga o usu\u00e1rios do sistema",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth_api"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "usu\u00e1rio deslogado"
+                    },
+                    "401": {
+                        "description": "N\u00e3o autorizado"
+                    },
+                    "500": {
+                        "description": "Erro inesperado"
+                    }
+                }
+            }
+        },
         "/api/users": {
             "get": {
                 "tags": [
@@ -335,6 +402,17 @@
             "example": {
                 "email": "User email",
                 "password": "Senha do usu\u00e1rio"
+            }
+        },
+        "auth_api": {
+            "properties": {
+                "api_key": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "example": {
+                "api_key": "api string here"
             }
         }
     },
