@@ -8,7 +8,7 @@
  *     @SWG\Property(type="string", property="password")
  * )
  *
- * * @SWG\Definition(
+ * @SWG\Definition(
  *     definition="auth_api",
  *     type="object",
  *     example={"api_key":"api string here"},

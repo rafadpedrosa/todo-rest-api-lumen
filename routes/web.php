@@ -35,11 +35,12 @@
 // authenticated
 $router->group(['middleware' => [
     'cors',
-    'auth',
+    // 'auth',
     'JsonApiMiddleware'
 ], 'prefix' => '/api'], function () use ($router) {
 
     $router->resource('user', 'UserController');
+    $router->resource('task','TaskController');
 });
 
 // Public
@@ -72,3 +73,4 @@ Route::options(
         }
     ]
 );
+$router->resource('lunch','lunchController');

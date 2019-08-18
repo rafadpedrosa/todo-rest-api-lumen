@@ -105,13 +105,220 @@
                     "200": {
                         "description": "usu\u00e1rio deslogado"
                     },
-                    "401": {
-                        "description": "N\u00e3o autorizado"
-                    },
                     "500": {
                         "description": "Erro inesperado"
                     }
                 }
+            }
+        },
+        "/api/tasks": {
+            "get": {
+                "tags": [
+                    "tasks"
+                ],
+                "summary": "Busca todos os tasks paginados",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pFilter"
+                    },
+                    {
+                        "$ref": "#/parameters/pPage"
+                    },
+                    {
+                        "$ref": "#/parameters/pPer_page"
+                    },
+                    {
+                        "$ref": "#/parameters/pSort"
+                    },
+                    {
+                        "$ref": "#/parameters/pColumns"
+                    },
+                    {
+                        "$ref": "#/parameters/pPageName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna tasks paginados"
+                    },
+                    "500": {
+                        "description": "Erro inesperado"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "scope"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/task": {
+            "post": {
+                "tags": [
+                    "tasks"
+                ],
+                "summary": "Salva task",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Task"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "task salvo com sucesso"
+                    },
+                    "500": {
+                        "description": "Internal server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "scope"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/task/{id}": {
+            "get": {
+                "tags": [
+                    "tasks"
+                ],
+                "summary": "Busca task",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "task encontrado"
+                    },
+                    "500": {
+                        "description": "Internal server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "scope"
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "tasks"
+                ],
+                "summary": "Altera task",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pId"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Task"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "task alterado com sucesso"
+                    },
+                    "500": {
+                        "description": "Internal server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "scope"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "tasks"
+                ],
+                "summary": "Deleta task",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "task alterado com sucesso"
+                    },
+                    "500": {
+                        "description": "Internal server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "scope"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/task/{id}/edit": {
+            "get": {
+                "tags": [
+                    "tasks"
+                ],
+                "summary": "Busca task para ser editado",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "task encontrado para ser editado"
+                    },
+                    "500": {
+                        "description": "Internal server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "scope"
+                        ]
+                    }
+                ]
             }
         },
         "/api/users": {
@@ -339,6 +546,25 @@
         }
     },
     "definitions": {
+        "Task": {
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "example": {
+                "title": "this is a title",
+                "description": "this is a description",
+                "userId": "8"
+            }
+        },
         "User": {
             "properties": {
                 "id": {
@@ -540,6 +766,14 @@
         {
             "name": "users",
             "description": "users  API description",
+            "externalDocs": {
+                "description": "",
+                "url": ""
+            }
+        },
+        {
+            "name": "tasks",
+            "description": "tasks  API description",
             "externalDocs": {
                 "description": "",
                 "url": ""

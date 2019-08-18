@@ -68,7 +68,12 @@ class AuthController extends Controller
         $user->api_key = $apiKey;
         $user->save();
 
-        return response()->json(['userId' => $user->id, 'email' => $user->email, 'api_key' => $user->api_key]);
+        return response()->json([
+            'userId' => $user->id,
+            'email' => $user->email,
+            'username' => $user->username,
+            'api_key' => $user->api_key
+        ]);
     }
 
     /**

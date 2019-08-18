@@ -34,4 +34,21 @@
  *     url=""
  *   )
  * )
+ * @SWG\Tag(
+ *   name="tasks",
+ *   description="tasks  API description",
+ *   @SWG\ExternalDocumentation(
+ *     description="",
+ *     url=""
+ *   )
+ * )
+ **/ 
+* @SWG\Tag(
+ *   name="lunchs",
+ *   description="lunchs  API description",
+ *   @SWG\ExternalDocumentation(
+ *     description="",
+ *     url=""
+ *   )
+ * )
  **/ 
